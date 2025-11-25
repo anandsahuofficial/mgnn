@@ -1,0 +1,20 @@
+# Test Workflow: Data Loading and Verification
+# Purpose: Test pickle loading, DataFrame creation, filtering
+
+!WORKFLOW_TYPE = 'test_data_loader'
+
+# Input
+!PICKLE_FILE = '/projectnb/cui-buchem/anandsahu/ResearchWorks/MGNN/archive/notebooks/MultinaryOxides_PickledData.pkl'
+
+# Output
+!DATA_FILE = './mgnn_data.h5'
+!OUTPUT_DIR = './mgnn_output'
+
+# Filtering (lenient for testing)
+!FILTER_PEROVSKITES_ONLY = True
+!MIN_STABILITY = -10.0
+!MAX_DECOMPOSITION = 10.0
+
+# Processing
+!N_WORKERS = 4
+!SAVE_INTERMEDIATE = True

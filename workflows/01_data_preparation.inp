@@ -1,0 +1,44 @@
+# MGNN Data Preparation Workflow
+# Purpose: Load, verify, and prepare multinary oxides dataset
+
+!WORKFLOW_TYPE = 'data_preparation'
+
+# Input data
+!PICKLE_FILE = './MultinaryOxides_PickledData.pkl'
+!VERIFY_AGAINST_SOURCE = True
+!SOURCE_URL = 'https://contribs.materialsproject.org/projects/Multinary_Oxides'
+
+# Output settings
+!DATA_FILE = './mgnn_data.h5'
+!OUTPUT_DIR = './mgnn_output'
+!CACHE_DIR = './cache'
+
+# Data filtering
+!FILTER_PEROVSKITES_ONLY = True  # Only use structures classified as perovskites
+!MIN_STABILITY = -0.5  # eV/atom, filter by formation energy
+!MAX_DECOMPOSITION = 0.65  # eV/atom above hull
+
+# Feature engineering
+!N_FEATURES = 42
+!USE_STRUCTURAL_FEATURES = True
+!USE_ELECTRONIC_FEATURES = True
+!USE_COMPOSITIONAL_FEATURES = True
+!USE_ENERGETIC_FEATURES = True
+
+# Graph construction
+!GRAPH_CUTOFF_RADIUS = 8.0  # Angstroms
+!GRAPH_K_NEIGHBORS = 12
+!EDGE_GAUSSIAN_WIDTH = 0.5
+!N_EDGE_GAUSSIANS = 32
+
+# Data splitting
+!TRAIN_RATIO = 0.70
+!VAL_RATIO = 0.15
+!TEST_RATIO = 0.15
+!RANDOM_SEED = 42
+!STRATIFY_BY = 'dH_composition_ev'  # Stratify by stability
+
+# Processing
+!N_WORKERS = 4
+!BATCH_SIZE = 100  # For feature extraction batching
+!SAVE_INTERMEDIATE = True
